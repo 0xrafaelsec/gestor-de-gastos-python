@@ -1,4 +1,3 @@
-
 gasto = []
 while True:
     print('1 - Adicionar gastos')
@@ -8,9 +7,28 @@ while True:
     opcao = input('Escolha uma opção: ')
     
     if opcao == '1':
-        descricao = input('O que comprou? ')
-        valor = float(input('Quanto custou? '))
-        quantidade = int(input('Quantos você comprou? '))
+        while True:
+            descricao = input('O que comprou? ')
+            if descricao.strip() == '':
+                print('A descrição não pode ficar vazia. Tente novamente!')
+            else:
+                break
+                
+        while True:
+            try:
+                valor = float(input('Quanto custou? '))
+                break
+                
+            except ValueError: 
+                print('Erro: Valor incorreto. Digite apenas números e  tente novamente')
+         
+        while True:
+            try:
+                quantidade = int(input('Quantos você comprou? '))
+                break
+                    
+            except ValueError:
+                print('Erro: Quantidade incorreta. Digite apenas números inteiros.')
         
         gasto.append([quantidade, descricao, valor])
         print('Gasto registrado com sucesso!')
@@ -38,4 +56,3 @@ while True:
        
     else:
         print('Opção inválida')
-        
