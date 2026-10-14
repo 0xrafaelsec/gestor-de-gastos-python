@@ -2,10 +2,11 @@ gasto = []
 while True:
     print('1 - Adicionar gastos')
     print('2 - Ver total')
-    print('3 - Sair')
-    
+    print('3 - Remover gastos')
+    print('4 - Sair')
+
     opcao = input('Escolha uma opção: ')
-    
+
     if opcao == '1':
         while True:
             descricao = input('O que comprou? ')
@@ -13,46 +14,62 @@ while True:
                 print('A descrição não pode ficar vazia. Tente novamente!')
             else:
                 break
-                
+
         while True:
             try:
                 valor = float(input('Quanto custou? '))
                 break
-                
-            except ValueError: 
-                print('Erro: Valor incorreto. Digite apenas números e  tente novamente')
-         
+
+            except ValueError:
+                print('Erro: Valor incorreto. Digite apenas números e tente novamente')
+
         while True:
             try:
                 quantidade = int(input('Quantos você comprou? '))
                 break
-                    
+
             except ValueError:
                 print('Erro: Quantidade incorreta. Digite apenas números inteiros.')
-        
+
         gasto.append([quantidade, descricao, valor])
         print('Gasto registrado com sucesso!')
-        
+
     elif opcao == '2':
-         if len(gasto) == 0:
-             print('Nenhum item na lista! ')
-         else:
-             total = 0
-             print('\n--- O SEU EXTRATO ---')
-         
-             for item in gasto:
-                 subtotal = item[0] * item[2]
-                 print(f'{item[0]} - {item[1]}: R$ {item[2]:.2f} subtotal: R$ {subtotal:.2f} ') 
-                 total = total + subtotal
-          
-             print(f'\n O total gasto foi: R$ {total:.2f}')
-          
+        if len(gasto) == 0:
+            print('Nenhum item na lista! ')
+        else:
+            total = 0
+            print('\n--- O SEU EXTRATO ---')
+
+            for item in gasto:
+                subtotal = item[0] * item[2]
+                print(f'{item[0]} - {item[1]}: R$ {item[2]:.2f} subtotal: R$ {subtotal:.2f} ')
+                total = total + subtotal
+
+            print(f'\n O total gasto foi: R$ {total:.2f}')
+
     elif opcao == '3':
+        if len(gasto) == 0:
+            print('Nenhum item na lista!')
+
+        else:
+            for item in gasto:
+                print(f'{item[1]}')
+
+            remover = input('Quais itens quer remover? ')
+
+        for item in gasto:
+            if remover.upper() == item[1].upper():
+                gasto.remove(item)
+                print('Item removido com sucesso!')
+                break
+
+    elif opcao == '4':
         sair = input('Você quer sair: S/N ? ').upper()
         if sair == 'S':
             break
         else:
             print('Você voltou ao MENU!')
-       
+
     else:
         print('Opção inválida')
